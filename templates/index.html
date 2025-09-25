@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake News Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📰 Fake News Detector</h1>
+      <p>Enter a news article or headline to check if it's <span class="real">Real</span> or <span class="fake">Fake</span>.</p>
+    </header>
+
+    <main>
+      <form method="POST">
+        <textarea name="news_text" placeholder="Paste your news article here..." required>{{ request.form.get('news_text', '') }}</textarea>
+        <button type="submit">Check News</button>
+      </form>
+
+      {% if result %}
+        <div class="result">
+          <h2>Result:</h2>
+          <p>{{ result }}</p>
+        </div>
+      {% endif %}
+    </main>
+
+    <footer>
+      <p>Made with ❤️ using Flask & TensorFlow</p>
+    </footer>
+  </div>
+</body>
+</html>
