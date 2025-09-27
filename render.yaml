@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: fakenews-detection-ai
+    env: python
+    plan: starter   # free plan may not have enough memory for ML
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app -w 2 -k uvicorn.workers.UvicornWorker --timeout 120 --threads 2 --preload"
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "true"
+      - key: CUDA_VISIBLE_DEVICES   # disables GPU confusion on Render
+        value: "-1"
