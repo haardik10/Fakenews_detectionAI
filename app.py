@@ -4,7 +4,10 @@ import tensorflow as tf
 import pickle
 import re
 import string
+import nltk
+nltk.download("stopwords", quiet=True)
 from nltk.corpus import stopwords
+stop_words = set(stopwords.words("english"))
 
 
 model = load_model("fakenews2.keras")
